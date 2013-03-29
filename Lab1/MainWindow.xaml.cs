@@ -26,7 +26,7 @@ namespace Lab1
         {
             InitializeComponent();
         }
-
+        private ArrayList myAL = new ArrayList();
         private void button3_Click(object sender, RoutedEventArgs e)
         {
             if (textBox1.Text != "")
@@ -95,6 +95,40 @@ namespace Lab1
         private void button4_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
+        }
+
+        private void button5_Click(object sender, RoutedEventArgs e)
+        {
+            {
+                if (textBox1.Text != "")
+                {
+                    int index;
+                    int itemCount = Convert.ToInt32(textBox1.Text);
+                    Random rnd2 = new Random();
+                    int number;
+                    listBox1.Items.Clear();
+                    listBox1.Items.Add("Исходный массив");
+                    for (index = 1; index <= itemCount; index++)
+                    {
+                        number = -100 + rnd2.Next(200);
+                        myAL.Add(number);
+                        listBox1.Items.Add(number);
+                    }
+                    int[] mas = new int[itemCount];
+                    myAL.CopyTo(mas);
+                    int num = 0;
+                    for (int i = 1; i < mas.Length - 1; i++)
+                    {
+                        if (mas[i] > mas[i + 1] && mas[i] > mas[i - 1])
+                        {
+                            num++;
+                        }
+                    }
+                    listBox1.Items.Add("Колличество элементов больше своих соседей:");
+                    listBox1.Items.Add(num);
+                }
+                else listBox1.Items.Add("Введите значение");
+            }
         }
     }
 }
